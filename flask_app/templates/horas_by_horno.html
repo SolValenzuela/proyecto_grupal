@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Horas por horno {% endblock %}
+
+{% block content %}
+
+<!-- Pestañas  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Bienvenido {{session['taller']}}</h1>
+                    <p>Puedes agregar o eliminar horas de tu agenda pinchando el link</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="btn btn-outline-secondary" data-filter="*"><a href="/publica/producto">Publica tus productos acá</a>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-auto col-md-12 special-grid best-seller">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Nombre del Horno</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Hora de inicio</th>
+								<th scope="col">Hora de termino</th>
+								<th scope="col">Agregar horas</th>
+								<th scope="col">Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>		
+							{%for horario in horarios%}
+							<tr>
+								<td>
+									<a href="/actualiza/horno">{{horario.nombre}}</a>
+								</td>
+								<td>{{horario.fecha_inicio}}</td>
+								<td>{{horario.hora_inicio}}</td>
+								<td>{{horario.hora_termino}}</td>
+								<td><a href="/crear/agenda/{{horario.horno_id}}">Agregar horas</a></td>			
+								<td><a href="/destroy/agenda/{{horario.id}}" >Eliminar hora</a></td>
+							</tr>
+							{%endfor%}
+						</tbody>
+					</table>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- End Products  -->
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

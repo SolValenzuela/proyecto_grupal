@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %} Actualiza horno {% endblock %}
+
+{% block content %}
+
+<div class="contact-box-main">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-12">
+				<div class="contact-info-left">
+					<h2>Instrucciones</h2>
+					<p>Completa el formulario de actualizazión de tu horno. </p>
+					<p>Una vez que los completes presiona actualizar y los cambios quedarán guardados </p>
+					<ul>
+						<li>
+							<p>Dudas o comentarios? </p>
+						</li>
+						<li>
+							<p><i class="fas fa-envelope"></i>Email: <a href="#">ofen@gmail.com</a></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-8 col-sm-12">
+				<div class="contact-form-right">
+					<h2>Registra los datos de tu horno</h2>
+				
+					
+					<form action="/procesar/actualizar/horno" , method="post">
+						{% with messages = get_flashed_messages(category_filter=['error'] ) %}
+						{% if messages %}
+							<div class="text-center text-danger">
+								<h1>Alerta!!!</h1>
+							</div>
+							{% for message in messages %}
+								<div class="alert alert-danger" role="alert">
+									<p>{{message}}</p>
+								</div>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+					{% with messages = get_flashed_messages(category_filter=['success'] ) %}
+						{% if messages %}
+							<div class="text-center text-danger">
+								<h1>Great!!!</h1>
+							</div>
+							{% for message in messages %}
+								<div class="alert alert-success" role="alert">
+									<p>{{message}}</p>
+								</div>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Horno" required data-error="Please enter your name">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="number" placeholder="Temperatura minima en °C" id="temperatura_min" class="form-control" name="temperatura_min" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="number" placeholder="Temperatura máxima en °C" id="temperatura_max" class="form-control" name="temperatura_max" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="number" placeholder="Alto en cms." id="alto" class="form-control" name="alto" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
+									<input type="number" placeholder="Ancho en cms." id="ancho" class="form-control" name="ancho" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
+									<input type="number" placeholder="Fondo en cms." id="fondo" class="form-control" name="fondo" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="number" placeholder="Precio por bandeja (CLP)" id="costo_bandeja" class="form-control" name="costo_bandeja" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="number" placeholder="Precio por medio horno (CLP)" id="costo_medio_horno" class="form-control" name="costo_medio_horno" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="number" placeholder="Precio por horno completo (CLP)" id="costo_horno_completo" class="form-control" name="costo_horno_completo" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control" id="observaciones" name="observaciones" placeholder="Observaciones.Ej: Responsabilidad por pieza" required data-error="Please enter your Subject">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="submit-button text-center">
+									<button class="btn hvr-hover" id="submit" type="submit">Actualizar</button>
+									<div id="msgSubmit" class="h3 text-center hidden"></div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- fin de formulario -->
+
+
+
+
+
+		
+
+{% endblock %}

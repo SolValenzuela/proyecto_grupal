@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} prueba extends {% endblock %}
+
+{% block content %}
+
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Bienvenido</h1>
+                    <p>Para reservar no necesitas registrarte</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">Listado de horas disponibles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-auto col-md-12 special-grid best-seller">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Fecha</th>
+								<th scope="col">Hora de inicio</th>
+								<th scope="col">Hora de término</th>
+								<th scope="col">Reservar</th>
+								<th scope="col">Regresar</th>
+							</tr>
+						</thead>
+						<tbody>		
+							{%for hora in horarios%}
+					<tr>
+						<td>{{hora.fecha_inicio}}</td>
+						<td>{{hora.hora_inicio}}</td>
+						<td>{{hora.hora_termino}}</td>
+						<td><a href="/detalles/reserva/{{hora.id}}">Reservar</a></td>
+						<td><a href="/arriendo/horno">Regresar</a></td>
+					</tr>
+					{%endfor%}
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+{% endblock %}
+	

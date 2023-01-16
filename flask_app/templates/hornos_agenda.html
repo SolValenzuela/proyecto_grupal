@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}hornos disponibles {% endblock %}
+
+{% block content %}
+
+
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Bienvenido</h1>
+                    <p>Para reservar no necesitas registrarte</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">Hornos ordenados por disponibildad de horas más próximas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-auto col-md-12 special-grid best-seller">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Nombre del taller</th>
+								<th scope="col">Nombre del horno</th>
+								<th scope="col">T° min. °C</th>
+								<th scope="col">T° máx. °C</th>
+								<th scope="col">Alto (cms.)</th>
+								<th scope="col">Ancho (cms.)</th>
+								<th scope="col">Fondo (cms.)</th>
+								<th scope="col">Costo  bandeja (CLP)</th>
+								<th scope="col">Costo medio horno (CLP)</th>
+								<th scope="col">Costo horno completo (CLP)</th>
+								<th scope="col">Observaciones</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Hora de inicio</th>
+								<th scope="col">Agenda</th>
+							</tr>
+						</thead>
+						<tbody>		
+							{%for horno_agenda in hornos_agendas%}
+							<tr>
+								<td>{{horno_agenda.nombre_taller}}</td>
+								<td>{{horno_agenda.nombre}}</td>
+								<td>{{horno_agenda.temperatura_min}}</td>
+								<td>{{horno_agenda.temperatura_max}}</td>
+								<td>{{horno_agenda.alto}}</td>
+								<td>{{horno_agenda.ancho}}</td>
+								<td>{{horno_agenda.fondo}}</td>
+								<td>{{horno_agenda.costo_bandeja}}</td>
+								<td>{{horno_agenda.costo_medio_horno}}</td>
+								<td>{{horno_agenda.costo_horno_completo}}</td>
+								<td>{{horno_agenda.observaciones}}</td>
+								<td>{{horno_agenda.fecha_inicio}}</td>
+								<td>{{horno_agenda.hora_inicio}}</td>
+								<td><a href="/reserva/horno/{{horno_agenda.horno_id}}" >Ver otras horas disponibles</a></td>
+							</tr>
+							{%endfor%}
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+

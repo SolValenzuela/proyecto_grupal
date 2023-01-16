@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %} Actualiza horno {% endblock %}
+
+{% block content %}
+
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Bienvenido</h1>
+                    <p>Para reservar no necesitas registrarte</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">Hornos ordenados por disponibildad de horas más próximas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-auto col-md-12 special-grid best-seller">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+						<thead class="thead-dark">
+							<tr>
+                                <th scope="col">Nombre del horno</th>
+                                <th scope="col">T° min. °C</th>
+                                <th scope="col">T° máx. °C</th>
+                                <th scope="col">Alto (cms.)</th>
+                                <th scope="col">Ancho (cms.)</th>
+                                <th scope="col">Fondo (cms.)</th>
+                                <th scope="col">Costo por bandeja</th>
+                                <th scope="col">Costo medio horno</th>
+                                <th scope="col">Costo horno completo</th>
+                                <th scope="col">Observaciones</th>
+                                <th scope="col">Actualiza horno</th>
+                                <th scope="col">Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>		
+							{%for detalle in detalles_actualizar%}
+								<tr>
+									<td>{{detalle.nombre}}</td>
+									<td>{{detalle.temperatura_min}}</td>
+									<td>{{detalle.temperatura_max}}</td>
+									<td>{{detalle.alto}}</td>
+									<td>{{detalle.ancho}}</td>
+									<td>{{detalle.fondo}}</td>
+									<td>{{detalle.costo_bandeja}}</td>
+									<td>{{detalle.costo_medio_horno}}</td>
+									<td>{{detalle.costo_horno_completo}}</td>
+									<td>{{detalle.observaciones}}</td>
+                                    <td><a href="/actualiza/horno/{{detalle.id}}">Actualiza horno</a></td>
+									<td><a href="/destroy/horno/{{detalle.id}}">Eliminar horno</a></td>
+								</tr>
+								{%endfor%}
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	
+
+{% endblock %}
+
+
+
+

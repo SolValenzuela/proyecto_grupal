@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} prueba extends {% endblock %}
+
+{% block content %}
+
+<!-- sección de formulario -->
+<div class="gtco-section">
+	<div class="gtco-container">
+		
+			
+			<div class="col-md-8 animate-box">
+				<h3 style="margin-top: 50px;">Detalles del Taller</h3>
+			</div>
+			<div class="col-md-8 animate-box">
+			<ul>
+				{%for detalle in detalles%}
+				<li>{{detalle.nombre}}</li>
+				<li>{{detalle.direccion}}</li>
+				<li>{{detalle.comuna}}</li>
+				<li>{{detalle.observaciones}}</li>
+				{%endfor%}
+			</ul>
+				
+			</div>
+		</div>
+	</div>
+</div>	
+<div>
+	<a href="/arriendo/horno">Volver al listado de hornos</a>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

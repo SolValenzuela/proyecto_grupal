@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %} prueba extends {% endblock %}
+
+{% block content %}
+
+<!-- sección de formulario -->
+<div class="gtco-section">
+	<div class="gtco-container">
+		
+			
+			<div class="col-md-8 animate-box">
+				<h3 style="margin-top: 50px;">Por favor ingresa tus datos de contacto</h3>
+			
+				<form action="/procesar/reserva/{{ id }}" , method="post">
+					{% with messages = get_flashed_messages(category_filter=['error'] ) %}
+					{% if messages %}
+						<div class="text-center text-danger">
+							<h1>Alerta!!!</h1>
+						</div>
+						{% for message in messages %}
+							<div class="alert alert-danger" role="alert">
+								<p>{{message}}</p>
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				{% with messages = get_flashed_messages(category_filter=['success'] ) %}
+					{% if messages %}
+						<div class="text-center text-danger">
+							<h1>Great!!!</h1>
+						</div>
+						{% for message in messages %}
+							<div class="alert alert-success" role="alert">
+								<p>{{message}}</p>
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+												
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label for="email">Email</label>
+							<input required type="email" name="email" id="email" class="form-control" placeholder="Email">
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-12">
+							<label for="number">Teléfono</label>
+							<input required type="number" name="telefono" id="telefono" class="form-control"
+								placeholder="+56911111111">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<input type="submit" value="Confirmar reserva" class="btn btn-primary btn-lg" >
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>	
+<div>
+	<a href="/arriendo/horno">Volver al listado de hornos</a>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

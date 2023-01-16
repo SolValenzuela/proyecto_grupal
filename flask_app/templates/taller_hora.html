@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+
+<!-- Pestañas  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Servicio de Arriendo de Hornos</h1>
+                    <p>Para arrendar un horno no necesitas registrarte</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">Lista por taller y horas disponibles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-auto col-md-12 special-grid best-seller">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nombre del taller</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Comuna</th>
+                                <th scope="col">Prox Día</th>
+                                <th scope="col">Prox Hora</th>
+                                <th scope="col">Detalles de horno y agenda</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for taller in talleres %}
+                            <tr>
+                                <td>{{taller.nombre}}
+                                </td>
+                                <td>{{taller.direccion}}</td>
+                                <td>{{taller.comuna}}</td>
+                                <td>{{taller.fecha_inicio}}</td>
+                                <td>{{taller.hora_inicio}}</td>
+                                <td><a href="/view/{{taller.id}}">Detalles</a></td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- End Products  -->
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %} Registro usuario {% endblock %}
+
+{% block content %}
+
+<!-- Formulario  -->
+<div class="contact-box-main">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-12">
+				<div class="contact-info-left">
+					<h2>Instrucciones</h2>
+					<p>Completa el formulario de registro  </p>
+					<p>Para poder realizar comentarios de los productos es necesario que te registres </p>
+					<ul>
+						<li>
+							<p>Dudas o comentarios? </p>
+						</li>
+						<li>
+							<p><i class="fas fa-envelope"></i>Email: <a href="#">ofen@gmail.com</a></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-8 col-sm-12">
+				<div class="contact-form-right">
+					<h2>Regístrate</h2>
+					<h4>Si ya estás registrado <a href="/login/usuario">Login</a></h4>
+					
+					<form action="/procesar/usuario" , method="post">
+						{% with messages = get_flashed_messages(category_filter=['register'] ) %}
+						{% if messages %}
+							<div class="text-center text-danger">
+								<h1>Alerta!!!</h1>
+							</div>
+							{% for message in messages %}
+								<div class="alert alert-danger" role="alert">
+									<p>{{message}}</p>
+								</div>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+					{% with messages = get_flashed_messages(category_filter=['success'] ) %}
+						{% if messages %}
+							<div class="text-center text-danger">
+								<h1>Great!!!</h1>
+							</div>
+							{% for message in messages %}
+								<div class="alert alert-success" role="alert">
+									<p>{{message}}</p>
+								</div>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required data-error="Please enter your name">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="email" placeholder="Email" id="email" class="form-control" name="email" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="password" class="form-control" id="password" name="password" placeholder="Password" required data-error="Please enter your Subject">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="password" class="form-control" id="confirmar_password" name="confirmar_password" placeholder="Confirmar password" required data-error="Please enter your Subject">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="submit-button text-center">
+									<button class="btn hvr-hover" id="submit" type="submit">Registro</button>
+									<div id="msgSubmit" class="h3 text-center hidden"></div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- fin de formulario -->
+
+{% endblock %}
