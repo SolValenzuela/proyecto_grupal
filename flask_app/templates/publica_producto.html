@@ -58,7 +58,6 @@
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
-							
 							<div class="col-md-12">
 								<div class="form-group">
 									<input type="text" class="form-control" id="autor" name="autor" placeholder="Nombre del autor" required >
@@ -77,6 +76,15 @@
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
+							<!-- agregué esto para subir las fotos -->
+						<div class="input-container ic1">
+							<form action="/publicar_producto" class="col-md-6" method="post" enctype="multipart/form-data"></form>
+							<input id="file" class="input" type="file" placeholder=" " name="file" required />
+							<div class="cut"></div>
+							<label for="file" class="placeholder">imagen</label>
+							</form> </div>
+							<!-- fin de formulario -->
+
 							<div class="col-md-12">
 								<div class="submit-button text-center">
 									<button class="btn hvr-hover" id="submit" type="submit">Publicar</button>
@@ -98,6 +106,36 @@
 
 
 
-		
+<!-- Agregué script para carrito de compras -->
+<script src ="{{url_for('static', filename='vendor/minicart.js')}}"></script>
+<script>
+    $(document).ready( function(){
 
+        paypal.minicart.render({
+            string:{
+                button: 'Ver'
+                ,buttonAlt: "Total:"
+                ,subtotal: 'Total:'
+                ,empty: 'No hay productos en el carrito'
+            }
+        });
+
+        $('.producto').click(function(e){
+            e.stopPropagation();
+            console.log("agregando!")
+            
+            console.log ($(this).attr("titulo"))
+            console.log ($(this).attr("precio"))
+            paypal.minicart.cart.add({
+                business: 'nanidisenografico@gmail.com', 
+                item_name: $(this).attr("titulo"),
+                    amount: $(this).attr("precio"),
+                    currency_code: 'EUR',
+    
+            });
+            
+        });
+    });
+</script>
 {% endblock %}
+<!-- fin de formulario -->
