@@ -26,7 +26,7 @@
 					<h2>Registra los datos de tu Producto</h2>
 				
 					
-					<form action="/procesar/producto" , method="post">
+					<form action="/procesar/producto" , method="post" enctype="multipart/form-data">
 						{% with messages = get_flashed_messages(category_filter=['error'] ) %}
 						{% if messages %}
 							<div class="text-center text-danger">
@@ -77,13 +77,15 @@
 								</div>
 							</div>
 							<!-- agregué esto para subir las fotos -->
-						<div class="input-container ic1">
-							<form action="/publicar_producto" class="col-md-6" method="post" enctype="multipart/form-data"></form>
+						<div class="col-md-12">
+							<label for="file" class="placeholder">Seleccionar imagen</label>
 							<input id="file" class="input" type="file" placeholder=" " name="file" required />
 							<div class="cut"></div>
-							<label for="file" class="placeholder">imagen</label>
-							</form> </div>
-							<!-- fin de formulario -->
+						</div>
+							
+							
+							
+						
 
 							<div class="col-md-12">
 								<div class="submit-button text-center">
@@ -94,6 +96,7 @@
 							</div>
 						</div>
 					</form>
+						<!-- fin de formulario -->
 				</div>
 			</div>
 		</div>

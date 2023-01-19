@@ -20,7 +20,7 @@ def taller_hora_horno():
 
 @app.route('/registro')
 def registro():
-    return render_template('registro.html')
+    return render_template('registro_taller.html')
 
 
 
@@ -52,7 +52,7 @@ def procesar_taller():
 #ruta para loguearse
 @app.route('/login/taller')
 def login_taller():
-    return render_template('login/taller.html')
+    return render_template('login_taller.html')
 
 
 # ruta Post de formulario login/taller,comprueba que taller existe,guarda datos de session y redirige

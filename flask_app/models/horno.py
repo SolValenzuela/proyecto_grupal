@@ -204,7 +204,7 @@ class Horno:
                 observaciones=%(observaciones)s
             WHERE id=%(id)s;
         """
-        results=connectToMySQL(db_name).query_db(cls,data)
+        results=connectToMySQL(db_name).query_db(query,data)
         return results
 
 

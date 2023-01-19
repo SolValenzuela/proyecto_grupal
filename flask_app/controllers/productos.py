@@ -6,6 +6,7 @@ from flask_app.controllers import talleres
 
 
 
+
 #ruta para crear el producto
 @app.route('/publica/producto')
 def publica_producto():
@@ -22,11 +23,14 @@ def procesar_producto():
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
         return redirect('/login/taller')
+    file=request.files['file']
+    file.save('./flask_app/static/images/' + file.filename)
     data={
         'nombre':request.form['nombre'],
         'autor': request.form['autor'],
         'descripcion': request.form['descripcion'],
-        "precio" : request.form['precio'],
+        'precio' : request.form['precio'],
+        'imagen':file.filename,
         'taller_id':session['taller_id']
     }
     new_product=Producto.save(data)
@@ -37,9 +41,20 @@ def procesar_producto():
     return redirect('/productos')
 
 
+
+
 @app.route('/productos')
 def mostrar_productos():
-    return render_template('mostrar_productos.html')
+    mostrar_productos=Producto.get_all()
+    return render_template('mostrar_productos.html',mostrar_productos=mostrar_productos)
+
+@app.route('/carrito')
+def carrito():
+    return render_template('carrito.html')
+
+
+
+
 
 # #ruta para actualizar producto
 # @app.route('/actualiza/producto/<id>')
@@ -74,10 +89,10 @@ def mostrar_productos():
 
 
 
-# #ruta que muestra los hornos ordenados por precio de menor a mayor
+# #ruta que muestra los producto ordenados por precio de menor a mayor
 # @app.route('/producto/precio/menor')
 # def producto_precio_menor():
-#     precios=Horno.precio_menor()
+#     precios=Producto.precio_menor()
 #     return render_template('precio_menor.html',precios=precios)
 
 

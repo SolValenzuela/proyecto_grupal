@@ -66,9 +66,9 @@ def crear_agenda(horno_id):
 
 @app.route('/view/<taller_id>')
 def details(taller_id):
-    if 'taller' not in session:
-        flash('Primero tienes que loguearte', 'register')
-        return redirect('/login/taller')
+    # if 'taller' not in session:
+    #     flash('Primero tienes que loguearte', 'register')
+    #     return redirect('/login/taller')
     data={
         'taller_id':taller_id
     }

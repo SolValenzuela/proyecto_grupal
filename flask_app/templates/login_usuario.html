@@ -18,7 +18,7 @@
 							<p>Si tiene dudas o comentarios, contáctanos </p>
 						</li>
 						<li>
-							<p><i class="fas fa-envelope"></i>Email: <a href="ofen@gmail.com">ofen@gmail.com</a></p>
+							<p><i class="fas fa-envelope"></i>Email: <a href="ofen@gmail.com">ofen.ceramistas@gmail.com</a></p>
 						</li>
 					</ul>
 				</div>
@@ -28,7 +28,7 @@
 					<h2>Por favor ingresa tus datos</h2>
 					<h4>Sino estás registrado <a href="/registro/usuario">regístrate acá</a></h4>
 					
-					<form action="/procesar/login/taller/usuario" , method="post">
+					<form action="/procesar/login/usuario" , method="post">
 						{% with messages = get_flashed_messages(category_filter=['register'] ) %}
 						{% if messages %}
 							<div class="text-center text-danger">
@@ -63,12 +63,18 @@
 							<div class="col-md-12">
 								<div class="submit-button text-center">
 									<button class="btn hvr-hover" id="submit" type="submit">Continuar</button>
-									<div id="msgSubmit" class="h3 text-center hidden"></div>
-									<div class="clearfix"></div>
 								</div>
+								
 							</div>
+							
 						</div>
 					</form>
+					<div class="col-md-12">
+						<div class="submit-button text-center">
+							<h3 style="margin-top: 20px;">O regístrate con tu cuenta google</h3>	
+						<button  id="submit" type="submit"><a href="/login"><img style="width: 80px;" src="{{url_for('static',filename='images/eliminar-cuenta-google-de-android-1.png')}}" alt=""></a></button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

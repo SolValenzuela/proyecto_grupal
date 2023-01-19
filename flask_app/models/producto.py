@@ -14,6 +14,7 @@ class Producto:
         self.autor= data['autor']
         self.descripcion= data['descripcion']
         self.precio= data['precio']
+        self.imagen= data['imagen']
         self.taller_id= data['taller_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -25,9 +26,9 @@ class Producto:
     def save(cls,data):
         query ="""
                 INSERT INTO productos 
-                (nombre,autor,descripcion,precio,taller_id)
+                (nombre,autor,descripcion,precio,imagen,taller_id)
                 VALUES 
-                (%(nombre)s,%(autor)s,%(descripcion)s,%(precio)s,%(taller_id)s);
+                (%(nombre)s,%(autor)s,%(descripcion)s,%(precio)s,%(imagen)s,%(taller_id)s);
             """
         results= connectToMySQL(db_name).query_db(query,data)
         return results
@@ -70,6 +71,25 @@ class Producto:
 
 
 
+#producto y taller al que pertenece
+    @classmethod
+    def producto_by_taller(cls,id):
+        query="""
+            /*producto y taller al que pertenece*/
+            select talleres.nombre AS nombre_taller,p.*
+            from talleres
+            join productos p
+            ON p.taller_id=talleres.%(id)s;
+        """
+        data={'id':id}
+        results=connectToMySQL(db_name).query_db(query,data)
+        return results
+
+
+
+
+
+
 #update de producto
     @classmethod
     def update(cls,data):
@@ -79,7 +99,7 @@ class Producto:
             SET nombre=%(nombre)s, autor=%(autor)s,descripcion=%(descripcion)s,precio=%(precio)s
             WHERE id=%(id)s;
         """
-        results=connectToMySQL(db_name).query_db(cls,data)
+        results=connectToMySQL(db_name).query_db(query,data)
         return results
 
 

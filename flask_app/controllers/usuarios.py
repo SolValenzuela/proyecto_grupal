@@ -1,8 +1,7 @@
 from flask_app import app
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.usuario import Usuario
-
-
+import flask_app.controllers.auth
 
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app) 
@@ -33,21 +32,21 @@ def procesar_usuario():
     id = Usuario.save(nuevo_usuario)
     if not id:
         flash("The email already exists.","register")
-        return redirect('/login/taller/usuario')
+        return redirect('/login/usuario')
     session['usuario'] = request.form['nombre']
     session['usuario_id'] = id
     return redirect('/')
 
 
 #ruta para loguearse
-@app.route('/login/taller/usuario')
-def  login_taller_usuario():
-        return render_template('login/taller_usuario.html')
+@app.route('/login/usuario')
+def  login_usuario():
+        return render_template('login_usuario.html')
 
 
-# ruta Post de formulario login/taller,comprueba que usuario existe,guarda datos de session y redirige
-@app.route("/procesar/login/taller/usuario",methods=['POST'])
-def procesar_login_taller_usuario():
+# ruta Post de formulario login/usuario,comprueba que usuario existe,guarda datos de session y redirige
+@app.route("/procesar/login/usuario",methods=['POST'])
+def procesar_login_usuario():
 
 
     data = {
@@ -57,11 +56,11 @@ def procesar_login_taller_usuario():
     if not usuario:
         flash("Email or password invalido","register")
         print('Email or password invalido","register')
-        return redirect("/login/taller/usuario")
+        return redirect("/login/usuario")
     
     if not bcrypt.check_password_hash(usuario.password,request.form['password']):
         flash("Email or password invalido","register")
-        return redirect("/login/taller/usuario")
+        return redirect("/login/usuario")
     session['usuario_id'] =usuario.id
     session['usuario']=usuario.nombre
     
