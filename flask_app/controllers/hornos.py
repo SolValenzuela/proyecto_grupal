@@ -200,8 +200,8 @@ Direccion : { datos[0].get('direccion')}
 Comuna : { datos[0].get('comuna')}
 '''
     #The mail addresses and password
-    sender_address = 'sovalenz@gmail.com'
-    sender_pass = 'sjrilesiexefyyec'
+    sender_address = 'Agregar cuenta google'
+    sender_pass = 'Agregar cotraseña de aplicación de la cuenta google'
     receiver_address = mail
     #Setup the MIME
     message = MIMEMultipart()
