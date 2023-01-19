@@ -11,7 +11,7 @@ from flask_app.controllers import talleres
 def publica_producto():
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     return render_template('publica_producto.html')
 
 
@@ -21,7 +21,7 @@ def publica_producto():
 def procesar_producto():
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     data={
         'nombre':request.form['nombre'],
         'autor': request.form['autor'],
@@ -53,7 +53,7 @@ def mostrar_productos():
 # def procesar_actualizar():
 #     if 'taller' not in session:
 #         flash('Primero tienes que loguearte', 'register')
-#         return redirect('/login')
+#         return redirect('/login/taller')
 #     data={
 #         'nombre':request.form['nombre'],
 #         'autor': request.form['autor'],
@@ -88,7 +88,7 @@ def mostrar_productos():
 def destroy_producto(id):
     if 'taller' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     Producto.destroy(id)
     return redirect('/listado/producto/<taller_id>')
 

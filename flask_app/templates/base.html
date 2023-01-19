@@ -87,9 +87,9 @@
                     <div class="our-link">
                         <ul>{%if 'taller_id' in session%}
                             <li><a href="#">Bienvenido Taller {{session['taller']}}</a></li>
-                            <li><a href="/logout">Cerrar sesión</a></li>
+                            <li><a href="/logout/taller">Cerrar sesión</a></li>
                             {%else%}
-                            <li><a href="/login">Mi cuenta</a></li>
+                            <li><a href="/login/taller">Mi cuenta</a></li>
                             {%endif%}
                             
                         </ul>
@@ -130,11 +130,11 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Comprar</a>
                             <ul class="dropdown-menu">
-                                <li><a href="/login/usuario">Mi cuenta</a></li>
+                                <li><a href="/login/taller/usuario">Mi cuenta</a></li>
                                 <li><a href="#">Carrito</a></li>
                                 <li><a href="#">Pagar</a></li>
                                 <li><a href="#">Detalle de compra</a></li>
-                                <li><a href="/login/usuario">Hacer comentarios</a></li>
+                                <li><a href="/login/taller/usuario">Hacer comentarios</a></li>
                                 <li><a href="/desloguearse">Cerrar sesión</a></li>
                             </ul>
                         </li>

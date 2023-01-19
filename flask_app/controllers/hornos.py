@@ -24,7 +24,7 @@ def about():
 def crear_horno():
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     return render_template('crear_horno.html')
 
 
@@ -34,7 +34,7 @@ def crear_horno():
 def procesar_horno():
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     data={
         'nombre':request.form['nombre'],
         'temperatura_min': request.form['temperatura_min'],
@@ -59,7 +59,7 @@ def procesar_horno():
 def crear_agenda(horno_id):
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     return render_template('crear_agenda.html', horno_id=horno_id)
 
 
@@ -68,7 +68,7 @@ def crear_agenda(horno_id):
 def details(taller_id):
     if 'taller' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     data={
         'taller_id':taller_id
     }
@@ -87,7 +87,7 @@ def horas_by_horno():
     taller_id = session['taller_id'] 
     if 'taller_id' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     horarios=Horno.all_hours_by_horno(taller_id)
     return render_template('horas_by_horno.html', horarios=horarios)
 
@@ -100,7 +100,7 @@ def actualiza_horno():
     taller_id = session['taller_id'] 
     if 'taller_id' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     horarios=Agenda.get_by_horno_id(taller_id)
     #detalles_actualizar=Horno.show_horno_details_by_id(taller_id)
     detalles_actualizar=Horno.show_agenda_horno_by_id(taller_id)
@@ -121,7 +121,7 @@ def actualizar_horno_by_id(id):
 def procesar_actualizar():
     if 'taller' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     data={
         'nombre':request.form['nombre'],
         'temperatura_min': request.form['temperatura_min'],
@@ -178,7 +178,7 @@ def precio_menor():
 def destroy_horno(id):
     if 'taller' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     Horno.destroy(id)
     return redirect('/listado/horno/<taller_id>')
 
@@ -213,7 +213,7 @@ Comuna : { datos[0].get('comuna')}
     #Create SMTP session for sending the mail
     session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
     session.starttls() #enable security
-    session.login(sender_address, sender_pass) #login with mail_id and password
+    session.login_taller(sender_address, sender_pass) #login/taller with mail_id and password
     text = message.as_string()
     session.sendmail(sender_address, receiver_address, text)
     session.quit()

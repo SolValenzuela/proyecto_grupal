@@ -20,7 +20,7 @@ from email.mime.text import MIMEText
 def procesar_agenda(horno_id):
     if 'taller_id' not in session:
         flash('Primero tienes que registrarte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
 
     hora_in=request.form['hora_inicio']+':'+request.form['init_min']+':00'
     hora_fin=request.form['hora_termino']+':'+request.form['init_min']+':00'
@@ -116,7 +116,7 @@ def arriendo_horno():
 def destroy_agenda(id):
     if 'taller_id' not in session:
         flash('Primero tienes que loguearte', 'register')
-        return redirect('/login')
+        return redirect('/login/taller')
     Agenda.destroy(id)
     return redirect('/listado/horno')
 
@@ -148,7 +148,7 @@ Comuna : { datos[0].get('comuna')}
     #Create SMTP session for sending the mail
     session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
     session.starttls() #enable security
-    session.login(sender_address, sender_pass) #login with mail_id and password
+    session.login/taller(sender_address, sender_pass) #login/taller with mail_id and password
     text = message.as_string()
     session.sendmail(sender_address, receiver_address, text)
     session.quit()

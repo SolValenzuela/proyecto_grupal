@@ -43,21 +43,21 @@ def procesar_taller():
     id = Taller.save(nuevo_usuario)
     if not id:
         flash("The email already exists.","register")
-        return redirect('/login')
+        return redirect('/login/taller')
     session['taller'] = request.form['nombre']
     session['taller_id'] = id
     return redirect('/crear/horno')
 
 
 #ruta para loguearse
-@app.route('/login')
-def login():
-    return render_template('login.html')
+@app.route('/login/taller')
+def login_taller():
+    return render_template('login/taller.html')
 
 
-# ruta Post de formulario login,comprueba que taller existe,guarda datos de session y redirige
-@app.route("/procesar/login",methods=['POST'])
-def procesar_login():
+# ruta Post de formulario login/taller,comprueba que taller existe,guarda datos de session y redirige
+@app.route("/procesar/login/taller",methods=['POST'])
+def procesar_login_taller():
 
 
     data = {
@@ -67,11 +67,11 @@ def procesar_login():
     if not taller:
         flash("Email or password invalido","register")
         print('Email or password invalido","register')
-        return redirect("/login")
+        return redirect("/login/taller")
     
     if not bcrypt.check_password_hash(taller.password,request.form['password']):
         flash("Email or password invalido","register")
-        return redirect("/login")
+        return redirect("/login/taller")
     session['taller_id'] =taller.id
     session['taller']=taller.nombre
     
@@ -85,7 +85,7 @@ def proximamente():
 
 
 #Ruta para desloguearse
-@app.route('/logout')
+@app.route('/logout/taller')
 def close_session():
     session.clear()
     return redirect('/')

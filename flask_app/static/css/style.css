@@ -1994,12 +1994,12 @@
      background-color: #d33b33;
      box-shadow: none;
 }
- .new-account-login h5 {
+ .new-account-login/taller h5 {
      font-size: 18px;
      color: #1111111;
      font-weight: 600;
 }
- .new-account-login h5 a:hover{
+ .new-account-login/taller h5 a:hover{
      color: #d33b33;
 }
  .review-form-box button{

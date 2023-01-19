@@ -7,6 +7,12 @@ name = "pypi"
 flask = "*"
 pymysql = "*"
 flask-bcrypt = "*"
+flask-login/taller = "*"
+oauthlib = "*"
+google-auth = "*"
+google-auth-oauthlib = "*"
+requests = "*"
+requests-oauthlib = "*"
 
 [dev-packages]
 

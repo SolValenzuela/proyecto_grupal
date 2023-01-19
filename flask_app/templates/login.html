@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} login {% endblock %}
+{% block title %} login/taller {% endblock %}
 
 {% block content %}
 
@@ -28,7 +28,7 @@
 					<h2>Por favor ingresa tus datos</h2>
 					<h4>Sino estás registrado <a href="/registro">regístrate acá</a></h4>
 					
-					<form action="/procesar/login" , method="post">
+					<form action="/procesar/login/taller" , method="post">
 						{% with messages = get_flashed_messages(category_filter=['register'] ) %}
 						{% if messages %}
 							<div class="text-center text-danger">
