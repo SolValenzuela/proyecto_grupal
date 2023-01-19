@@ -212,38 +212,39 @@
                                 <th>Imágen</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
-                                <th>Cantidad</th>
+                                
                                 <th>Total</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {%for producto in productos%}
                             <tr>
                                 <td class="thumbnail-img">
                                     <a href="#">
-                                <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                <img class="img-fluid" src="{{url_for('static',filename='/images/platos.jpg')}}" alt="Image" />
                             </a>
                                 </td>
                                 <td class="name-pr">
                                     <a href="#">
-                                Lorem ipsum dolor sit amet
+                                        {{producto.nombre}}
                             </a>
                                 </td>
                                 <td class="price-pr">
-                                    <p>$ 80.0</p>
+                                    <p>$ {{producto.precio}}</p>
                                 </td>
-                                <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
+                                
                                 <td class="total-pr">
-                                    <p>$ 80.0</p>
+                                    <p>$ {{producto.precio}}</p>
                                 </td>
                                 <td class="remove-pr">
-                                    <a href="#">
+                                    <a href="/delete/producto">
                                 <i class="fas fa-times"></i>
                             </a>
                                 </td>
                             </tr>
                             
-                            
+                            {%endfor%}
                         </tbody>
                     </table>
                 </div>

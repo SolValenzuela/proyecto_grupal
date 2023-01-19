@@ -48,9 +48,11 @@ def mostrar_productos():
     mostrar_productos=Producto.get_all()
     return render_template('mostrar_productos.html',mostrar_productos=mostrar_productos)
 
-@app.route('/carrito')
-def carrito():
-    return render_template('carrito.html')
+
+@app.route('/carrito/<id>')
+def carrito(id):
+    productos=Producto.get_all_by_id(id)
+    return render_template('carrito.html',productos=productos)
 
 
 
