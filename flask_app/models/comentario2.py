@@ -5,87 +5,65 @@ from datetime import datetime,timedelta
 
 
 db_name='ceramistas'
-
 class Comentario:
-    
-    def __init__(self,data):
+
+    modelo = 'comentarios'
+    campos = [ 'comentario','producto_id', 'usuarios_id']
+
+    def __init__(self, data):
         self.id = data['id']
-        self.producto_id=data['producto_id']
-        self.usuario_id= data['usuario_id']
-        self.comentario= data['comentario']
+        self.producto_id = data['producto_id']
+        self.comentario = data['comentario']
+        self.usuario_id = data['usuarios_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-    
 
-
-#guardar datos de comentario
     @classmethod
-    def save(cls,data):
-        query ="""
-                INSERT INTO comentarios 
-                (comentario_id,usuario_id,comentario)
-                VALUES 
-                (%(comentario_id)s,%(usuario_id)s,%(comentario)s);
-            """
-        results= connectToMySQL(db_name).query_db(query,data)
-        return results
-    
+    def get_all_with_usuario(cls):
+        query =f"SELECT * FROM {cls.modelo} JOIN usuarios ON usuarios.id ={cls.modelo}.usuarios_id;"
+        results = connectToMySQL(os.environ.get("BASEDATOS_NOMBRE")).query_db(query)
+        print(results)
+        all_data = []
+        for data in results:
+            all_data.append(cls(data))
+        return all_data
 
-#obtener todos los comentarios
     @classmethod
-    def get_all(cls):
-        query = "SELECT * FROM comentarios;"
-        comentarios =  connectToMySQL(db_name).query_db(query)
+    def get_by_id_with_usuario(cls, id):
+        query =f"SELECT * FROM {cls.modelo} JOIN usuarios ON usuarios.id ={cls.modelo}.usuarios_id WHERE comentario.id = %(id)s;"
+        data = {'id': id}
+        results = connectToMySQL(os.environ.get("BASEDATOS_NOMBRE")).query_db(query, data)
+        print(results)
+        all_data = []
+        for data in results:
+            all_data.append(cls(data))
+        return all_data
 
-        comentario =[]
-        for b in comentarios:
-            comentario.append(cls(b))
-        return comentario
-    
-
-#detalles del comentario por id
     @classmethod
-    def get_all_by_id(cls,id):
-        query = "SELECT * FROM comentarios where id=%(id)s;"
-        data={'id':id}
-        results =  connectToMySQL(db_name).query_db(query, data)
-        return results
+    def update(cls, data):
+        query = """UPDATE comentario 
+                        SET producto_id=%(producto_id)s,
+                        comentario = %(comentario)s,
+                        usuario_id = %(usuario_id)s,
+                        updated_at=NOW() 
+                    WHERE id = %(id)s"""
+        resultado = connectToMySQL(os.environ.get("BASEDATOS_NOMBRE")).query_db(query, data)
+        print("RESULTADO: ", resultado)
+        return resultado
+
+    @staticmethod
+    def validar_largo(data, campo, largo):
+        is_valid = True
+        if len(data[campo]) <= largo:
+            flash(f'El largo del {campo} no puede ser menor o igual {largo}', 'error')
+            is_valid = False
+        return is_valid
+
+    @classmethod
+    def validar(cls, data):
+
+        is_valid = True
         
-
-
-
-# /*mostrar todos los comentarios generados por un usuario*/
-    @classmethod
-    def show_horno_details(cls, usuario_id):
-        query="""
-                /*mostrar todos los comentarios generados por un usuario*/
-               SELECT * from comentarios 
-                WHERE usuario_id=%(usuario_id)s;
-                """
-        data={"usuario_id" : usuario_id}
-        results =  connectToMySQL(db_name).query_db(query,data)
-        return results
-
-
-
-#update de comentario
-    @classmethod
-    def update(cls,data):
-        query="""
-            /* update de comentario*/
-            UPDATE comentarios
-            SET comentario=%(comentario)s
-            WHERE id=%(id)s;
-        """
-        results=connectToMySQL(db_name).query_db(cls,data)
-        return results
-
-
-
-#elimina un comentario
-    @classmethod
-    def destroy(cls,data):
-        data={'id':data}
-        query= "DELETE from comentarios WHERE id=%(id)s;"
-        results=connectToMySQL(db_name).query_db(query,data)
-        return results   
+        is_valid = cls.validar_largo(data, 'comentario', 10)
+            
+        return is_valid
