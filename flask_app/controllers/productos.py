@@ -31,7 +31,8 @@ def procesar_producto():
         'descripcion': request.form['descripcion'],
         'precio' : request.form['precio'],
         'imagen':file.filename,
-        'taller_id':session['taller_id']
+        'taller_id':session['taller_id'],
+        'compra':0
     }
     new_product=Producto.save(data)
     if not new_product:
@@ -65,27 +66,25 @@ def carrito(id):
 
 
 
-# #ruta Post para procesar update del producto
-# @app.route('/procesar/actualizar/producto', methods=['POST'])
-# def procesar_actualizar():
-#     if 'taller' not in session:
-#         flash('Primero tienes que loguearte', 'register')
-#         return redirect('/login/taller')
-#     data={
-#         'nombre':request.form['nombre'],
-#         'autor': request.form['autor'],
-#         'descripcion': request.form['descripcion'],
-#         "precio" : request.form['precio'],
-#         'taller_id':session['taller_id']
-#     }
+#ruta Post para procesar update del producto
+@app.route('/procesar/actualizar/producto', methods=['POST'])
+def procesar_actualizar():
+    data={
+        'nombre':request.form['nombre'],
+        'autor': request.form['autor'],
+        'descripcion': request.form['descripcion'],
+        "precio" : request.form['precio'],
+        'taller_id':session['taller_id'],
+        'compra':1
+    }
     
-#     new_horno=Producto.update(data)
-#     if not new_horno:
-#         flash('Error al actualizar producto','error')
-#         return redirect(f'/actualiza/producto/{id}')
-#     else:
-#         flash('Horno actualizado con éxito','success')
-#     return redirect('/listado/producto')
+    new_horno=Producto.update(data)
+    if not new_horno:
+        flash('Error al actualizar producto','error')
+        return redirect(f'/actualiza/producto/{id}')
+    else:
+        flash('Horno actualizado con éxito','success')
+    return redirect('/listado/producto')
 
 
 
@@ -103,10 +102,7 @@ def carrito(id):
 #ruta para eliminar un producto
 @app.route('/destroy/producto/<id>')
 def destroy_producto(id):
-    if 'taller' not in session:
-        flash('Primero tienes que loguearte', 'register')
-        return redirect('/login/taller')
     Producto.destroy(id)
-    return redirect('/listado/producto/<taller_id>')
+    return redirect('/carrito')
 
 

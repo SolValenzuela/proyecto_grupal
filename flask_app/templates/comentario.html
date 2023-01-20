@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}  {% endblock %}
+{% block title %} comentarios {% endblock %}
+
 
 {% block content %}
-
 <div class="container mt-5">
-    <div class ="row">
-<h2>Todos los comentarios de nuestros productos:</h2><br>
-    {% for comentario in comentarios  %}
-<div class="card w-75">
-    <div class="card-body">
-        <h3 class="card-title">{{comentario.comentario}}</h3>
-        <p class="card-text">Producto comentado: {{comentario.producto_id}}</p>
-        <p class="card-text">Posteado por: {{comentario.usuario_id}}</p>
+    <div class="row">
+        <h2>Todos los comentarios de nuestros productos:</h2><br>
+        {% for comentario in comentarios %}
+        <div class="card w-75">
+            <div class="card-body">
+                <h3 class="card-title">{{comentario.comentario}}</h3>
+                <p class="card-text">Producto comentado: {{comentario.producto_id}}</p>
+                <p class="card-text">Posteado por: {{comentario.usuario_id}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="mb-3">
+            <a class="btn btn-danger" href="/">Volver a Inicio</a>
+        </div>
     </div>
 </div>
-    {% endfor %}
-    <div class="mb-3">
-        <a class="btn btn-danger" href="/">Volver a Inicio</a>        
-    </div>
-
-</div>
-
-{% endblock %}
+    {% endblock %}

@@ -18,6 +18,7 @@ class Producto:
         self.taller_id= data['taller_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.compra=data['compra']
     
 
 
@@ -26,9 +27,9 @@ class Producto:
     def save(cls,data):
         query ="""
                 INSERT INTO productos 
-                (nombre,autor,descripcion,precio,imagen,taller_id)
+                (nombre,autor,descripcion,precio,imagen,taller_id,compra)
                 VALUES 
-                (%(nombre)s,%(autor)s,%(descripcion)s,%(precio)s,%(imagen)s,%(taller_id)s);
+                (%(nombre)s,%(autor)s,%(descripcion)s,%(precio)s,%(imagen)s,%(taller_id)s,%(compra)s);
             """
         results= connectToMySQL(db_name).query_db(query,data)
         return results

@@ -218,11 +218,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                    
                             {%for producto in productos%}
                             <tr>
                                 <td class="thumbnail-img">
                                     <a href="#">
-                                <img class="img-fluid" src="{{url_for('static',filename='/images/platos.jpg')}}" alt="Image" />
+                                <img class="img-fluid" src="../static/images/{{producto.imagen}}" alt="Image" />
                             </a>
                                 </td>
                                 <td class="name-pr">
@@ -238,7 +239,7 @@
                                     <p>$ {{producto.precio}}</p>
                                 </td>
                                 <td class="remove-pr">
-                                    <a href="/delete/producto">
+                                    <a href="/destroy/producto">
                                 <i class="fas fa-times"></i>
                             </a>
                                 </td>
@@ -363,6 +364,9 @@
 <script src="{{url_for('static',filename='js/form-validator.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/contact-form-script.js')}}"></script>
 <script src="{{url_for('static',filename='js/custom.js')}}"></script>
+
+
+
 </body>
 
 </html>

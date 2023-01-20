@@ -118,7 +118,7 @@ def actualizar_horno_by_id(id):
 
 #ruta Post para procesar update del horno
 @app.route('/procesar/actualizar/horno', methods=['POST'])
-def procesar_actualizar():
+def procesar_actualizar_horno():
     if 'taller' not in session:
         flash('Primero tienes que loguearte', 'register')
         return redirect('/login/taller')
