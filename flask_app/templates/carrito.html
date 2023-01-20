@@ -253,39 +253,7 @@
         </div>
 
         <div class="row my-5">
-            <div class="col-lg-6 col-sm-6">
-                <div class="coupon-box">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                        <div class="input-group-append">
-                            <button class="btn btn-theme" type="button">Apply Coupon</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-                <div class="update-box">
-                    <input value="Update Cart" type="submit">
-                </div>
-            </div>
-        </div>
-
-        <div class="row my-5">
-            <div class="col-lg-8 col-sm-12"></div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="order-box">
-                    <h3>Order summary</h3>
-                    <div class="d-flex">
-                        <h4>Sub Total</h4>
-                        <div class="ml-auto font-weight-bold"> $ 130 </div>
-                    </div>
-                    
-                        <h5>Grand Total</h5>
-                        <div class="ml-auto h5"> $ 388 </div>
-                    </div>
-                    <hr> </div>
-            </div>
-            <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Checkout</a> </div>
+            <a href="#" class="btn btn-outline-warning producto" role="button" precio="17" titulo="Jersey" >¿Quieres hacer un pedido?</a>
         </div>
 
     </div>
@@ -366,6 +334,37 @@
 <script src="{{url_for('static',filename='js/custom.js')}}"></script>
 
 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src ="{{url_for('static', filename='js/minicart.js')}}"></script>
+<script>
+    $(document).ready( function(){
+
+        paypal.minicart.render({
+            string:{
+                button: 'Ver'
+                ,buttonAlt: "Total:"
+                ,subtotal: 'Total:'
+                ,empty: 'No hay productos en el carrito'
+            }
+        });
+
+        $('.producto').click(function(e){
+            e.stopPropagation();
+            console.log("agregando!")
+            
+            console.log ($(this).attr("titulo"))
+            console.log ($(this).attr("precio"))
+            paypal.minicart.cart.add({
+                business: 'ofen@gmail.com', 
+                item_name: $(this).attr("titulo"),
+                    amount: $(this).attr("precio"),
+                    currency_code: 'EUR',
+    
+            });
+            
+        });
+    });
+</script>
 
 </body>
 
